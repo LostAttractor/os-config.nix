@@ -32,5 +32,7 @@ _: {
     ../programs/waydroid.nix
   ];
 
+  nixpkgs.config.contentAddressedByDefault = true;
+
   isoImage.squashfsCompression = "zstd";
 }
