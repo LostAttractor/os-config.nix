@@ -5,7 +5,7 @@ _: {
     # platform/modules/hardware
     ../modules/hardware/bluetooth.nix
     ../modules/hardware/gamepad.nix
-    ../modules/hardware/mobiledevice.nix
+    ../modules/hardware/imobiledevice.nix
     # platform/modules/features
     ../modules/features/audio/pipewire.nix
     ../modules/features/ime/fcitx5.nix
