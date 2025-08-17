@@ -1,7 +1,9 @@
 _: {
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+
+  # Disable gcr-ssh-agent
+  services.gnome.gcr-ssh-agent.enable = false;
 
   imports = [ ./modules.nix ];
 }
