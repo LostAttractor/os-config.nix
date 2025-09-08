@@ -14,6 +14,7 @@
     ./modules/shell.nix
     ./modules/nix.nix
     # modules/features
+    ./modules/features/apparmor.nix
     ./modules/features/virtualisation.nix
     ./modules/features/docker.nix
     ./modules/features/filesystems.nix
