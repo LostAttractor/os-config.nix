@@ -1,1 +1,6 @@
-_: { programs.appimage.binfmt = true; }
+_: {
+    programs.appimage = {
+        enable = true;
+        binfmt = true;
+    };
+}
