@@ -6,13 +6,6 @@
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    pinentryPackage = osConfig.programs.gnupg.agent.pinentryPackage;
+    pinentry.package = osConfig.programs.gnupg.agent.pinentryPackage;
   };
-
-  # Disable gnome-keyring-ssh
-  xdg.configFile."autostart/gnome-keyring-ssh.desktop".text = ''
-    [Desktop Entry]
-    Type=Application
-    Hidden=true
-  '';
 }
