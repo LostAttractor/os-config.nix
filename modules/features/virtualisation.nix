@@ -1,13 +1,9 @@
 # You need kvm-intel / kvm-amd kernel module for virtualisation
-{ pkgs, ... }:
-{
+_: {
   virtualisation = {
     libvirtd = {
       enable = true;
-      qemu = {
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
-        swtpm.enable = true;
-      };
+      qemu.swtpm.enable = true;
     };
     spiceUSBRedirection.enable = true;
   };
