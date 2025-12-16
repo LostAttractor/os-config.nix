@@ -9,10 +9,16 @@
     # modules/basic
     ./modules/time.nix
     ./modules/i18n.nix
-    ./modules/network.nix
-    ./modules/ssh.nix
     ./modules/shell.nix
     ./modules/nix.nix
+    ./modules/registy.nix
+    ./modules/ssh.nix
+    ./modules/sudo.nix
+    # modules/network
+    ./modules/network
+    ./modules/network/firewall.nix
+    ./modules/network/featrues/proxy.nix
+    ./modules/network/featrues/tailscale.nix
     # modules/features
     ./modules/features/apparmor.nix
     ./modules/features/virtualisation.nix
@@ -27,6 +33,7 @@
     # package
     ./packages
     ./packages/gaming.nix
+    ./programs/waydroid.nix
     # user config
     ./user
   ];

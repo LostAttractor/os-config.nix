@@ -21,12 +21,26 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  boot.initrd.luks.devices."lvm-encrypted".device = "/dev/disk/by-uuid/468b2786-745a-4937-9123-4f4e5ba58d12";
+  boot.initrd.luks.devices."lvm-encrypted" = {
+    device = "/dev/disk/by-uuid/468b2786-745a-4937-9123-4f4e5ba58d12";
+    crypttabExtraOpts = [ "tpm2-device=auto" ];
+  };
 
   fileSystems."/" = {
     device = "tmpfs";
     fsType = "tmpfs";
     options = [ "mode=755" ];
+  };
+
+  fileSystems."/persistent" = {
+    device = "/dev/disk/by-uuid/fe8d27b3-11bf-4939-a414-d1d359c26083";
+    neededForBoot = true;
+    fsType = "btrfs";
+    options = [
+      "subvol=persistent"
+      "compress=zstd"
+      "discard=async"
+    ];
   };
 
   fileSystems."/root" = {
@@ -47,17 +61,6 @@
       "compress=zstd"
       "discard=async"
     ];
-  };
-
-  fileSystems."/persistent" = {
-    device = "/dev/disk/by-uuid/fe8d27b3-11bf-4939-a414-d1d359c26083";
-    fsType = "btrfs";
-    options = [
-      "subvol=persistent"
-      "compress=zstd"
-      "discard=async"
-    ];
-    neededForBoot = true;
   };
 
   fileSystems."/nix" = {
@@ -86,6 +89,20 @@
       discardPolicy = "both";
     }
   ];
+
+  services.beesd.filesystems.root = {
+    spec = "/dev/mapper/lvm-encrypted";
+    hashTableSizeMB = 64; # 128K extent size for 512 GB
+    verbosity = "crit";
+    extraOptions = [ "--loadavg-target" "5.0" ];
+  };
+
+  # https://wiki.archlinux.org/title/Dm-crypt/Swap_encryption
+  # https://github.com/matteo-pacini/nixos-configs/blob/9c71e214a6a6a496ba0eb165361016f7b58d6689/hosts/Brightfalls/hardware.nix#L53
+  # https://www.freedesktop.org/software/systemd/man/latest/crypttab.html
+  # environment.etc.crypttab.text = ''
+  #   swap LABEL=cryptswap /dev/urandom plain,offset=2048,cipher=aes-xts-plain64,size=512,sector-size=4096
+  # '';
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

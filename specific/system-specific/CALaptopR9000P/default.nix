@@ -1,27 +1,16 @@
-{ user, ... }:
+_:
 {
   networking.hostName = "CALaptopR9000P"; # Define hostname.
 
-  # Reserve one core to prevent the system from freezing
-  nix.settings.cores = 15;
-
   # Do less swapping instead of droping page cache (default=60)
-  # boot.kernel.sysctl."vm.swappiness" = 30;
-
-  # https://nixos.org/manual/nixos/unstable/index.html#sec-gpu-accel-vulkan
-  # environment.variables.DXVK_FILTER_DEVICE_NAME = "NVIDIA GeForce RTX 3060 Laptop GPU";
+  boot.kernel.sysctl."vm.swappiness" = 30;
 
   imports = [
-    ../../general/btrfs/autoscrub.nix
-    ../../general/btrfs/snapper.nix
-    ../../general/btrfs/docker.nix
-    ../../general/ssd/trim.nix
-    ../../general/keyboard/vamillo.nix
-    ../../general/tablet/opentabletdriver.nix
-    ../../general/radio/rtl-sdr.nix
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ../../general/zfs
+    ../../general/zfs/docker.nix
+    ../../general/peripherals
     ./disk-config.nix
+    ./zfs.nix
     ../../general/linux/tpm2.nix
     ../../general/linux/zswap.nix
     # Persistent

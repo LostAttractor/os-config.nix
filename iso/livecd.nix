@@ -4,9 +4,15 @@ _: {
     ../platform/desktop/modules.nix
     # modules/basic
     ../modules/time.nix
-    ../modules/network.nix
     ../modules/shell.nix
     ../modules/nix.nix
+    ../modules/registy.nix
+    ../modules/ssh.nix
+    ../modules/sudo.nix
+    # modules/network
+    ../modules/network
+    ../modules/network/firewall.nix
+    ../modules/network/featrues/proxy.nix
     # modules/features
     ../modules/features/apparmor.nix
     ../modules/features/virtualisation.nix

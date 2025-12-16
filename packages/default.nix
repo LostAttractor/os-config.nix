@@ -6,7 +6,6 @@
     # Download Tools
     wget
     axel
-    curlHTTP3
     # Editor & VCS
     git
     vim
@@ -32,34 +31,26 @@
     mesa-demos
     # Video Codec
     libva-utils
+    # Audio
+    alsa-utils
     # Sensors
     lm_sensors
     # Rsync
     rsync
     # Compiler
+    gnumake
+    bison
+    flex
     clang
+    clang-tools
     go
     rustup
     gcc
     gdb
     # Runtime
     nodejs
+    pnpm
     yarn
     python3
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.iotop.enable = true;
-  programs.iftop.enable = true;
-  programs.bandwhich.enable = true;
-  programs.mtr.enable = true;
-  programs.nexttrace.enable = true;
-  programs.trippy.enable = true;
-  programs.wireshark.enable = true;
-
-  programs.sharing.enable = true;
-
-  # Android debug bridge
-  programs.adb.enable = true;
 }

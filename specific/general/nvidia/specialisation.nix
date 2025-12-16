@@ -1,4 +1,10 @@
-_: {
+{ config, ... }: {
+  specialisation."NvidiaProduction".configuration = {
+    system.nixos.tags = [ "Nvidia-Production-Driver" ];
+
+    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
+
   specialisation."NvidiaSync".configuration = {
     system.nixos.tags = [ "Nvidia-Sync-Mode" ];
 

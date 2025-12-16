@@ -1,28 +1,16 @@
-{ user, ... }:
+_:
 {
   networking.hostName = "CALaptopG14"; # Define hostname.
 
-  programs.rog-control-center.enable = true;
-  programs.rog-control-center.autoStart = true;
-
-  # Torchpad is so slow
-  home-manager.users.${user}.dconf.settings = {
-    "org/gnome/desktop/peripherals/touchpad" = {
-      speed = 0.2;
-    };
-  };
-
-  # Reserve one core to prevent the system from freezing
-  nix.settings.cores = 15;
+  # Do less swapping instead of droping page cache (default=60)
+  boot.kernel.sysctl."vm.swappiness" = 30;
 
   imports = [
     ../../general/btrfs/autoscrub.nix
     ../../general/btrfs/snapper.nix
     ../../general/btrfs/docker.nix
     ../../general/ssd/trim.nix
-    ../../general/keyboard/vamillo.nix
-    ../../general/tablet/opentabletdriver.nix
-    ../../general/radio/rtl-sdr.nix
+    ../../general/peripherals
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../general/linux/tpm2.nix
@@ -30,6 +18,6 @@
     # Persistent
     ./persistent.nix
     # Featrues
-    ./modules/features/rathole.nix
+    # ./modules/features/rathole.nix
   ];
 }

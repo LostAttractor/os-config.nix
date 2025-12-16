@@ -3,10 +3,8 @@ _: {
     hideMounts = true;
 
     directories = [
-      "/etc/secureboot"
       "/etc/NetworkManager/system-connections"
-      "/etc/daed"
-      "/etc/asusd"
+      "/etc/v2raya"
       "/var/lib"
       "/var/log"
     ];

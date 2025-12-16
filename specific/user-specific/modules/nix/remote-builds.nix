@@ -21,21 +21,11 @@ in
       hostName = "nixremote@hydra.home.lostattractor.net";
       # protocol = "ssh-ng";
       systems = systems;
-      maxJobs = 6;
+      maxJobs = 4;
       speedFactor = 4;
       supportedFeatures = supportedFeatures;
       mandatoryFeatures = [ ];
       publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9iWjBoTjEwbjBYSUtvS1dEdjg1ZElkVlZPbjNPMlozSUhRdkgxK051Tlogcm9vdEBIeWRyYQo=";
-    }
-    {
-      hostName = "nixremote@nixbuilder1.home.lostattractor.net";
-      # protocol = "ssh-ng";
-      systems = systems;
-      maxJobs = 2;
-      speedFactor = 2;
-      supportedFeatures = supportedFeatures;
-      mandatoryFeatures = [ ];
-      publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUVaZXpYbzNXZUk3Rm16SThSSlBoOUUxZHZ5LzAxaXV5bUlzRU5LWkhvUkwgcm9vdEBuaXhidWlsZGVyMQo=";
     }
   ];
   nix.distributedBuilds = true;
@@ -43,8 +33,6 @@ in
   nix.settings.builders-use-substitutes = true;
 
   programs.ssh.extraConfig = ''
-    Host nixbuilder1.home.lostattractor.net
-      IdentityFile /root/.ssh/nixremote
     Host hydra.home.lostattractor.net
       IdentityFile /root/.ssh/nixremote
   '';

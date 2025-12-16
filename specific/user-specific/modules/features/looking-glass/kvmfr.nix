@@ -11,9 +11,7 @@ in
   boot = {
     kernelModules = [ "kvmfr" ];
     extraModulePackages = with config.boot.kernelPackages; [ kvmfr ];
-    extraModprobeConfig = ''
-      options kvmfr static_size_mb=64
-    '';
+    extraModprobeConfig = "options kvmfr static_size_mb=64";
   };
 
   services.udev.extraRules = ''

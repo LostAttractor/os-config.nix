@@ -1,0 +1,21 @@
+diff --git a/sound/usb/clock.c b/sound/usb/clock.c
+index 842ba5b801ea..8fb0a87c0977 100644
+--- a/sound/usb/clock.c
++++ b/sound/usb/clock.c
+@@ -618,9 +618,13 @@ static int set_sample_rate_v2v3(struct snd_usb_audio *chip,
+ 			return clock;
+ 	}
+ 
+-	prev_rate = get_sample_rate_v2v3(chip, fmt->iface, fmt->altsetting, clock);
+-	if (prev_rate == rate)
+-		goto validation;
++	if (USB_ID_VENDOR(chip->usb_id) == 0x0a73) {
++		usb_audio_info(chip, "clock: sample rate quirk for DLZ Creator\n");
++	} else {
++		prev_rate = get_sample_rate_v2v3(chip, fmt->iface, fmt->altsetting, clock);
++		if (prev_rate == rate)
++			goto validation;
++	}
+ 
+ 	cur_rate = snd_usb_set_sample_rate_v2v3(chip, fmt, clock, rate);
+ 	if (cur_rate < 0) {
