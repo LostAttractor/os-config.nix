@@ -12,16 +12,25 @@
       gsconnect
       blur-my-shell
       dock-from-dash
+      dash-to-dock
       caffeine
       pano
       astra-monitor
-      miniview
       wiggle
-      kimpanel
+      # kimpanel
+      ibus-tweaker
+      open-desktop-file-location
+      compiz-alike-magic-lamp-effect
+      fuzzy-app-search
+      app-menu-is-back
+      tailscale-status
+      bluetooth-battery-meter
+      hanabi
       # Extensions that no longer in use
       # openweather
       # tiling-assistant
       # burn-my-windows
+      # miniview
     ]);
 
   imports = [
@@ -29,6 +38,5 @@
     ./dconf/fonts.nix
     ./dconf/display/hidpi.nix
     ./dconf/display/vrr.nix
-    ./theme.nix
   ];
 }
