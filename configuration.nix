@@ -51,18 +51,6 @@
   # You can choose whether to clean /tmp on boot, but this is not necessary for Tmpfs
   # boot.tmp.cleanOnBoot = true;
 
-  # Don't allow mutation of users outside of the config.
-  users.mutableUsers = false;
-  nixpkgs.overlays = [
-    (final: prev: {
-      mutter = prev.mutter.overrideAttrs (oldAttrs: {
-        patches = oldAttrs.patches or [ ] ++ [
-          ./wayland-text-input-v1-Implement-basic-text-input-v1-.patch
-        ];
-      });
-    })
-  ];
-
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
