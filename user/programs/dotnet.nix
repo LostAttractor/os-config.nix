@@ -5,5 +5,5 @@ in
 {
   # https://nixos.wiki/wiki/DotNET
   home.sessionVariables.DOTNET_ROOT = "${dotnet-sdks}/share/dotnet";
-  home.packages = [ dotnet-sdks ];
+  home.packages = with pkgs; [ dotnet-sdks omnisharp-roslyn ];
 }
