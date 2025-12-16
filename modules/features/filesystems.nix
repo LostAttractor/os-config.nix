@@ -2,6 +2,8 @@ _: {
   boot.supportedFilesystems = [
     "nfs"
     "cifs"
-    "ntfs"
+  ];
+  boot.kernelModules = [
+    "ntfs3"
   ];
 }
