@@ -1,6 +1,6 @@
 _: {
-  programs.git = {
-    enable = true;
-    difftastic.enable = true;
-  };
+  programs.git.enable = true;
+
+  programs.difftastic.enable = true;
+  programs.difftastic.git.enable = true;
 }
