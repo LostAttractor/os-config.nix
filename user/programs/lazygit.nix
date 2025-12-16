@@ -1,6 +1,13 @@
 _: {
   programs.lazygit = {
     enable = true;
-    settings.git.paging.externalDiffCommand = "difft";
+    settings.git = {
+      overrideGpg = true;
+      pagers = [
+        {
+          externalDiffCommand = "difft";
+        }
+      ];
+    };
   };
 }
