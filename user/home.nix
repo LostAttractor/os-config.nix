@@ -28,5 +28,5 @@ _:
     ./services/lorri.nix
   ];
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "26.05";
 }
