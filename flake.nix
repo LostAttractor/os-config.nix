@@ -104,8 +104,6 @@
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
             aagl.nixosModules.default
-            daeuniverse.nixosModules.daed
-            flake-programs-sqlite.nixosModules.programs-sqlite
             { nixpkgs.config.allowUnfree = true; }
           ];
         };
@@ -131,8 +129,6 @@
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
             aagl.nixosModules.default
-            daeuniverse.nixosModules.daed
-            flake-programs-sqlite.nixosModules.programs-sqlite
             { nixpkgs.config.allowUnfree = true; }
           ];
         };
