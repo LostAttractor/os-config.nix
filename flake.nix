@@ -4,7 +4,7 @@
   inputs = {
     # Nix Packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     # Nix Hardware
     nixos-hardware.url = "github:nixos/nixos-hardware";
     # Disko
@@ -19,6 +19,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # NUR Packages
     nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
     # Apple Silicon Support
     apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
     apple-silicon-support.inputs.nixpkgs.follows = "nixpkgs";
@@ -31,26 +32,21 @@
     # Spicetify
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-    # daeuniverse
-    daeuniverse.url = "github:daeuniverse/flake.nix";
-    daeuniverse.inputs.nixpkgs.follows = "nixpkgs";
     # xivlauncher-rb
     nixos-xivlauncher-rb.url = "github:drakon64/nixos-xivlauncher-rb";
     nixos-xivlauncher-rb.inputs.nixpkgs.follows = "nixpkgs";
     # vscode-extensions
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
-    # flake-programs-sqlite
-    flake-programs-sqlite.url = "github:wamserma/flake-programs-sqlite";
-    flake-programs-sqlite.inputs.nixpkgs.follows = "nixpkgs";
-    # UMU Launcher
-    umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
-    umu.inputs.nixpkgs.follows = "nixpkgs";
-    # firefox-gnome-theme
-    firefox-gnome-theme = {
-      url = "github:rafaelmardojai/firefox-gnome-theme";
-      flake = false;
-    };
+    # musnix
+    musnix.url = "github:musnix/musnix";
+    musnix.inputs.nixpkgs.follows = "nixpkgs";
+    # LLM agents
+    llm-agents.url = "github:numtide/llm-agents.nix";
+    llm-agents.inputs.nixpkgs.follows = "nixpkgs";
+    # CodexBar
+    codexbar.url = "github:0xferrous/CodexBar-flake";
+    codexbar.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
