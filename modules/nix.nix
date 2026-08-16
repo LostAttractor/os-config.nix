@@ -32,4 +32,8 @@
     max-free = ${toString (50 * 1024 * 1024 * 1024)}
   '';
 
+  systemd.services.nix-daemon.serviceConfig = {
+    CPUWeight = 1;
+    OOMScoreAdjust = 1000;
+  };
 }
