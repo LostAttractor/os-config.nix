@@ -1,94 +1,61 @@
 { pkgs, inputs, ... }:
-let
-  inherit (pkgs.stdenv.hostPlatform) system;
-  umu-launcher = inputs.umu.packages.${system}.default;
-in
 {
   home.packages = with pkgs; [
     # Terminal
-    (blackbox-terminal.override { sixelSupport = true; })
+    blackbox-terminal
+    ghostty
     ptyxis
+    warp-terminal
+    waveterm
     # Web Browser
-    chromium
     google-chrome
     brave
     # Social Apps
-    tdesktop
-    signal-desktop
-    element-desktop
-    cinny-desktop
-    fractal
     qq
-    wechat-uos
+    wechat
     discord
     dissent
     polari
-    # Email
-    thunderbird
     # Password Manager
-    bitwarden
     bitwarden-cli
     # Music
-    g4music
+    gapless
+    amberol
     ncmpcpp
     ncspot
     go-musicfox
     # RSS
     newsflash
+    himalaya
     # Media
     komikku
     shortwave
     vlc
-    (mpv-unwrapped.wrapper { mpv = mpv-unwrapped.override { cddaSupport = true; }; })
-    # CD/DVD
-    brasero
+    (mpv.override { mpv-unwrapped = mpv-unwrapped.override { cddaSupport = true; }; })
     # Games
+    umu-launcher
+    protonplus
     osu-lazer-bin
     lunar-client
-    (lutris.override {
-      extraPkgs = pkgs: [
-        # List package dependencies here
-        wineWowPackages.stable
-        wineWowPackages.waylandFull
-        pixman
-        libjpeg
-        zenity
-        winetricks
-        umu-launcher
-      ];
-    })
-    umu-launcher
+    (inputs.nixos-xivlauncher-rb.packages.${stdenv.hostPlatform.system}.default.override { useGameMode = true; })
+    lutris
     bottles
-    # IDE
-    lapce
-    zed-editor
-    github-desktop
-    # Network
-    wireshark-qt
-    # Todo
-    kuro
+    # AI
+    codex
+    chatgpt
+    claude-code
+    opencode
+    (inputs.llm-agents.packages.${stdenv.hostPlatform.system}.opencode2)
+    (inputs.codexbar.packages.${stdenv.hostPlatform.system}.codexbar-cli)
+    (callPackage ./codexbar/cookie-importer.nix { })
     # Writing Tools
-    logseq
-    obsidian
-    marktext
     rnote
     papers
     # Office Toolkits
     wpsoffice-cn
-    libreoffice
     # File Searching
     fsearch
-    # Bittorrent
-    fragments
-    # Kdenlive
-    kdePackages.kdenlive
-    frei0r
-    mediainfo
-    # File Sharing
-    localsend
-    nur.repos.rewine.landrop
     # Remote Desktop
-    rustdesk
     parsec-bin
     remmina
     moonlight-qt
@@ -96,15 +63,18 @@ in
     virt-manager
     looking-glass-client
     # Radio
-    inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.gqrx
-    # Screenshot
-    flameshot
+    gqrx
+    # CAD
+    kicad
+    easyeda2kicad
     # Screenkey
     showmethekey
     # Uxplay
     uxplay
     # Backup
     pika-backup
+    # Screenshot
+    flameshot
     # Gnome Cicle Apps
     metadata-cleaner
     gnome-decoder
@@ -115,5 +85,38 @@ in
     collision
     # Dconf
     dconf-editor
-  ];
+    # Others
+    deskflow
+    uxplay
+    cameractrls-gtk4
+    roomeqwizard
+    (callPackage ./tiny4linux {})
+    ] ++ (with (import inputs.nixpkgs-stable {
+      # https://discourse.nixos.org/t/how-do-i-configure-multiple-nixpkgss-in-flakes/59581/2
+      inherit (stdenv.hostPlatform) system;
+      inherit (pkgs) config;
+    }); [ # Massively builds
+    # Electron
+    element-desktop
+    signal-desktop
+    bitwarden-desktop
+    github-desktop
+    # Qt
+    telegram-desktop
+    # Kdenlive
+    kdePackages.kdenlive
+    frei0r
+    mediainfo
+    # Browser
+    chromium
+    thunderbird
+    # Rust
+    rustdesk
+    fractal
+    # IDE
+    lapce
+    zed-editor
+    # Other
+    libreoffice
+  ]);
 }
