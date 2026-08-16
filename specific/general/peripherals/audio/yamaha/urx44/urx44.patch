@@ -1,0 +1,207 @@
+diff --git a/sound/usb/quirks-table.h b/sound/usb/quirks-table.h
+index eafc0d73cca1f..95b78a8204ee2 100644
+--- a/sound/usb/quirks-table.h
++++ b/sound/usb/quirks-table.h
+@@ -364,6 +364,129 @@ YAMAHA_DEVICE(0x105d, NULL),
+ 		}
+ 	}
+ },
++{
++	USB_DEVICE(0x0499, 0x1770),
++	QUIRK_DRIVER_INFO {
++		/* .vendor_name = "Yamaha", */
++		/* .product_name = "Steinberg URX44", */
++		QUIRK_DATA_COMPOSITE {
++			{ QUIRK_DATA_IGNORE(0) },
++			{
++				QUIRK_DATA_AUDIOFORMAT(1) {
++					.formats = SNDRV_PCM_FMTBIT_S32_LE,
++					.fmt_bits = 32,
++					.channels = 18,
++					.iface = 1,
++					.altsetting = 1,
++					.altset_idx = 1,
++					.endpoint = 0x01,
++					.ep_attr = USB_ENDPOINT_XFER_ISOC |
++							USB_ENDPOINT_SYNC_ASYNC |
++							USB_ENDPOINT_USAGE_DATA,
++					.attributes = 0,
++					.rates = SNDRV_PCM_RATE_44100 |
++					 	SNDRV_PCM_RATE_48000 |
++						SNDRV_PCM_RATE_88200 |
++						SNDRV_PCM_RATE_96000,
++					.rate_min = 44100,
++					.rate_max = 96000,
++					.nr_rates = 4,
++					.rate_table = (unsigned int[]) {
++						44100, 48000, 88200, 96000
++					},
++					.sync_ep = 0x81, \
++					.sync_iface = 2, \
++					.sync_altsetting = 1, \
++					.sync_ep_idx = 0, \
++					.implicit_fb = 1, \
++					.clock = 1
++				}
++			},
++			{
++				QUIRK_DATA_AUDIOFORMAT(1) {
++					.formats = SNDRV_PCM_FMTBIT_S32_LE,
++					.fmt_bits = 32,
++					.channels = 10,
++					.iface = 1,
++					.altsetting = 2,
++					.altset_idx = 2,
++					.endpoint = 0x01,
++					.ep_attr = USB_ENDPOINT_XFER_ISOC |
++						USB_ENDPOINT_SYNC_ASYNC |
++						USB_ENDPOINT_USAGE_DATA,
++					.attributes = 0,
++					.rates = SNDRV_PCM_RATE_176400 |
++						SNDRV_PCM_RATE_192000,
++					.rate_min = 176400,
++					.rate_max = 192000,
++					.nr_rates = 2,
++					.rate_table = (unsigned int[]) {
++						176400, 192000
++					},
++					.sync_ep = 0x81, \
++					.sync_iface = 2, \
++					.sync_altsetting = 2, \
++					.sync_ep_idx = 0, \
++					.implicit_fb = 1, \
++					.clock = 1
++				}
++			},
++			{
++				QUIRK_DATA_AUDIOFORMAT(2) {
++					.formats = SNDRV_PCM_FMTBIT_S32_LE,
++					.fmt_bits = 32,
++					.channels = 18,
++					.iface = 2,
++					.altsetting = 1,
++					.altset_idx = 1,
++					.endpoint = 0x81,
++					.ep_attr = USB_ENDPOINT_XFER_ISOC |
++						USB_ENDPOINT_SYNC_ASYNC |
++						USB_ENDPOINT_USAGE_IMPLICIT_FB,
++					.attributes = 0,
++					.rates = SNDRV_PCM_RATE_44100 |
++						SNDRV_PCM_RATE_48000 |
++						SNDRV_PCM_RATE_88200 |
++						SNDRV_PCM_RATE_96000,
++					.rate_min = 44100,
++					.rate_max = 96000,
++					.nr_rates = 4,
++					.rate_table = (unsigned int[]) {
++						44100, 48000, 88200, 96000
++					},
++					.clock = 1
++				}
++			},
++			{
++				QUIRK_DATA_AUDIOFORMAT(2) {
++					.formats = SNDRV_PCM_FMTBIT_S32_LE,
++					.fmt_bits = 32,
++					.channels = 10,
++					.iface = 2,
++					.altsetting = 2,
++					.altset_idx = 2,
++					.endpoint = 0x81,
++					.ep_attr = USB_ENDPOINT_XFER_ISOC |
++						USB_ENDPOINT_SYNC_ASYNC |
++						USB_ENDPOINT_USAGE_IMPLICIT_FB,
++					.attributes = 0,
++					.rates = SNDRV_PCM_RATE_176400 |
++						SNDRV_PCM_RATE_192000,
++					.rate_min = 176400,
++					.rate_max = 192000,
++					.nr_rates = 2,
++					.rate_table = (unsigned int[]) {
++						176400, 192000
++					},
++					.clock = 1
++				}
++			},
++			{ QUIRK_DATA_MIDI_YAMAHA(3) },
++			{ QUIRK_DATA_IGNORE(4) },
++			QUIRK_COMPOSITE_END
++		}
++	}
++},
+ {
+ 	USB_DEVICE(0x0499, 0x150a),
+ 	QUIRK_DRIVER_INFO {
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index caca0e586d832..f0f62f8b06777 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -631,6 +631,33 @@ static int snd_usb_fasttrackpro_boot_quirk(struct usb_device *dev)
+ 	return 0;
+ }
+ 
++static int snd_usb_yamaha_steinberg_boot_quirk(struct usb_device *dev)
++{
++	int err;
++
++	if (dev->actconfig->desc.bConfigurationValue == 1) {
++		dev_info(&dev->dev,
++			   "Yamaha/Steinberg switching to config #2\n");
++		/* This function has to be available by the usb core module.
++		 * if it is not avialable the boot quirk has to be left out
++		 * and the configuration has to be set by udev or hotplug
++		 * rules
++		 */
++		err = usb_driver_set_configuration(dev, 2);
++		if (err < 0)
++			dev_dbg(&dev->dev,
++				"error usb_driver_set_configuration: %d\n",
++				err);
++		/* Always return an error, so that we stop creating a device
++		   that will just be destroyed and recreated with a new
++		   configuration */
++		return -ENODEV;
++	} else
++		dev_info(&dev->dev, "Yamaha/Steinberg config OK\n");
++
++	return 0;
++}
++
+ /*
+  * C-Media CM106/CM106+ have four 16-bit internal registers that are nicely
+  * documented in the device's data sheet.
+@@ -1648,6 +1675,8 @@ int snd_usb_apply_boot_quirk(struct usb_device *dev,
+ 		return snd_usb_nativeinstruments_boot_quirk(dev);
+ 	case USB_ID(0x0763, 0x2012):  /* M-Audio Fast Track Pro USB */
+ 		return snd_usb_fasttrackpro_boot_quirk(dev);
++	case USB_ID(0x0499, 0x1770):  /* Yamaha/Steinberg URX44  */
++		return snd_usb_yamaha_steinberg_boot_quirk(dev);
+ 	case USB_ID(0x047f, 0xc010): /* Plantronics Gamecom 780 */
+ 		return snd_usb_gamecon780_boot_quirk(dev);
+ 	case USB_ID(0x2466, 0x8010): /* Fractal Audio Axe-Fx 3 */
+@@ -1763,6 +1792,15 @@ static void set_format_emu_quirk(struct snd_usb_substream *subs,
+ 	subs->pkt_offset_adj = (emu_samplerate_id >= EMU_QUIRK_SR_176400HZ) ? 4 : 0;
+ }
+ 
++static void set_format_yamaha_urx_quirk(struct snd_usb_substream *subs)
++{
++	if (subs->direction == SNDRV_PCM_STREAM_PLAYBACK) {
++		return;
++	}
++
++	subs->pkt_offset_adj = 8;
++}
++
+ static int pioneer_djm_set_format_quirk(struct snd_usb_substream *subs,
+ 					u16 windex)
+ {
+@@ -1862,6 +1900,9 @@ void snd_usb_set_format_quirk(struct snd_usb_substream *subs,
+ 	case USB_ID(0x041e, 0x3f19): /* E-Mu 0204 USB */
+ 		set_format_emu_quirk(subs, fmt);
+ 		break;
++	case USB_ID(0x0499, 0x1770): /* Yamaha URX44 */
++		set_format_yamaha_urx_quirk(subs);
++		break;
+ 	case USB_ID(0x534d, 0x0021): /* MacroSilicon MS2100/MS2106 */
+ 	case USB_ID(0x534d, 0x2109): /* MacroSilicon MS2109 */
+ 		subs->stream_offset_adj = 2;
