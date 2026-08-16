@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     hyprpaper
-    rofi-wayland
+    rofi
     mako
     nautilus
     networkmanagerapplet
