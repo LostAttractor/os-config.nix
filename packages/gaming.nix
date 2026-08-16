@@ -29,7 +29,10 @@
   programs.gamemode = {
     enable = true;
     enableRenice = true;
-    settings.general.softrealtime = "auto";
+    settings = {
+      general.softrealtime = "auto";
+      cpu.pin_cores = "0-7,16-23";
+    };
   };
 
   boot.kernelModules = [ "ntsync" ];
