@@ -25,7 +25,6 @@ _:
     ./programs/dotnet.nix
     ./programs/gpg.nix
     ./services/syncthing.nix
-    ./services/mpd.nix
     ./services/lorri.nix
   ];
 
