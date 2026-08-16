@@ -40,11 +40,13 @@
     rsync
     # Compiler
     gnumake
+    pkg-config
     bison
     flex
     clang
     clang-tools
     go
+    gopls
     rustup
     gcc
     gdb
