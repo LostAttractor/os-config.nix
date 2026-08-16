@@ -4,13 +4,16 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      # You can split this configuration into multiple files
+      # Create your files separately and then link them to this file like this:
+      # source = ~/.config/hypr/myColors.conf
+
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor = [
         "eDP-1,preferred,auto,1.25"
         "HDMI-A-1,highrr,auto,auto"
+        ",preferred,auto,auto"
       ];
-
-      # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
       # Execute your favorite apps at launch
       exec-once = [
@@ -21,25 +24,18 @@
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
       ];
 
-      # Source a file (multi-file configs)
-      # source = ~/.config/hypr/myColors.conf
-
       # Some default env vars.
-      env = [ "XCURSOR_SIZE,24" ];
+      env = [
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_SIZE,24"
+      ];
 
       # No Scaling For XWayland
       xwayland.force_zero_scaling = true;
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
 
-      input = {
-        touchpad = {
-          natural_scroll = true;
-        };
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-        follow_mouse = 2;
-      };
-
+      # https://wiki.hyprland.org/Configuring/Variables/#general
       general = {
         gaps_in = 5;
         gaps_out = 8;
@@ -47,40 +43,34 @@
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
 
-        layout = "dwindle";
+        # Set to true enable resizing windows by clicking and dragging on borders and gaps
+        resize_on_border = false;
 
         # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
         allow_tearing = false;
-      };
 
-      binds = {
-        workspace_back_and_forth = true;
-      };
-
-      group = {
-        "col.border_active" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.border_inactive" = "rgba(595959aa)";
-
-        groupbar = {
-          render_titles = false;
-          "col.active" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          "col.inactive" = "rgba(595959aa)";
-        };
+        layout = "dwindle";
       };
 
       decoration = {
         rounding = 8;
 
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-        };
+        # Change transparency of focused and unfocused windows
+        active_opacity = 1.0;
+        inactive_opacity = 1.0;
 
         drop_shadow = true;
         shadow_range = 4;
         shadow_render_power = 3;
         "col.shadow" = "rgba(1a1a1aee)";
+
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+
+          vibrancy = 0.1696;
+        };
       };
 
       # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
@@ -100,6 +90,17 @@
         ];
       };
 
+      group = {
+        "col.border_active" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.border_inactive" = "rgba(595959aa)";
+
+        groupbar = {
+          render_titles = false;
+          "col.active" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          "col.inactive" = "rgba(595959aa)";
+        };
+      };
+
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
       dwindle = {
         pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
@@ -108,32 +109,42 @@
 
       # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
       master = {
-        new_is_master = true;
+        new_status = "master";
       };
 
+      # https://wiki.hyprland.org/Configuring/Variables/#misc
+      misc = {
+        force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo = false; # If true disables the random hyprland logo / anime girl background. :(
+      };
+
+      # https://wiki.hyprland.org/Configuring/Variables/#input
+      input = {
+        kb_layout = "us";
+        follow_mouse = 2;
+        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+        touchpad.natural_scroll = true;
+      };
+
+      # https://wiki.hyprland.org/Configuring/Variables/#gestures
       gestures = {
         workspace_swipe = true;
         workspace_swipe_cancel_ratio = 0.3;
         workspace_swipe_forever = true;
       };
 
-      misc = {
-        force_default_wallpaper = -1; # Set to 0 to disable the anime mascot wallpapers
+      binds = {
+        workspace_back_and_forth = true;
       };
 
       # Example per-device config
-      # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-      "device:epic-mouse-v1" = {
+      # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
+      device = {
+        name = "epic-mouse-v1";
         sensitivity = -0.5;
       };
 
-      # Example windowrule v1
-      # windowrule = float, ^(kitty)$
-      # Example windowrule v2
-      # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-      # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-
-      # See https://wiki.hyprland.org/Configuring/Keywords/ for more
+      # See https://wiki.hyprland.org/Configuring/Keywords/
       "$mainMod" = "SUPER";
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
@@ -233,6 +244,17 @@
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
+
+      # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+      # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
+
+      # Example windowrule v1
+      # windowrule = float, ^(kitty)$
+
+      # Example windowrule v2
+      # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+
+      windowrulev2 = "suppressevent maximize, class:.*"; # You'll probably like this.
     };
   };
 }
