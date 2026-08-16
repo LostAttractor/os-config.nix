@@ -10,6 +10,7 @@ _:
     ./settings/dconf/blackbox.nix
     ./packages/apps.nix
     ./packages/utils.nix
+    ./packages/audio.nix
     ./programs/firefox.nix
     ./programs/shell.nix
     ./programs/vscode.nix
