@@ -94,6 +94,7 @@
     sops
     nurl
     nix-update
+    attic-client
     # Wine
     wine
     winetricks
