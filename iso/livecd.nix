@@ -29,6 +29,7 @@ _: {
     ../programs/utils.nix
     ../programs/mosh.nix
     ../programs/localsend.nix
+    ../programs/waydroid.nix
   ];
 
   isoImage.squashfsCompression = "zstd";
