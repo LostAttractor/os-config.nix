@@ -1,0 +1,12 @@
+diff --git a/src/scripts/monitors/alsa.lua b/src/scripts/monitors/alsa.lua
+index 1557997b..192c3f77 100644
+--- a/src/scripts/monitors/alsa.lua
++++ b/src/scripts/monitors/alsa.lua
+@@ -84,6 +84,7 @@ function createSplitPCMLoopback(parent, id, obj_type, factory, properties)
+     "node.driver",
+     "node.pause-on-idle",
+     "node.want-driver",
++    "node.nick",
+     "port.group",
+     "priority.driver",
+     "resample.disable",
