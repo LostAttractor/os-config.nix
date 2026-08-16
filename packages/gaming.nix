@@ -1,9 +1,9 @@
+{ pkgs, ... }:
 {
-  inputs,
-  pkgs,
-  ...
-}:
-{
+  imports = [ 
+    ./hoyo-games.nix
+  ];
+
   programs.steam = {
     enable = true;
     package = pkgs.steam.override {
@@ -34,11 +34,4 @@
   };
 
   boot.kernelModules = [ "ntsync" ];
-
-  nix.settings = inputs.aagl.nixConfig; # Set up Cachix
-  programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
-  programs.honkers-railway-launcher.enable = true;
-  programs.honkers-launcher.enable = true;
-  programs.wavey-launcher.enable = true;
-  programs.sleepy-launcher.enable = true;
 }
