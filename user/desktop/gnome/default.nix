@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  codexbarGnomeExtension = pkgs.callPackage ../../packages/codexbar/gnome-extension.nix { };
+in
 {
   home.packages =
     (with pkgs; [
@@ -23,7 +26,7 @@
       app-menu-is-back
       tailscale-status
       bluetooth-battery-meter
-      hanabi
+      codexbarGnomeExtension
       # Extensions that no longer in use
       # openweather
       # tiling-assistant
