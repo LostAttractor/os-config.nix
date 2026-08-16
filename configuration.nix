@@ -35,6 +35,7 @@
     ./packages/gaming.nix
     # programs
     ./programs/utils.nix
+    ./programs/mosh.nix
     ./programs/waydroid.nix
     # user config
     ./user
