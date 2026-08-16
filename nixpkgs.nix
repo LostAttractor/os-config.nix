@@ -36,6 +36,14 @@
         ];
       });
 
+      code-cursor = prev.code-cursor.overrideAttrs (oldAttrs: {
+        postInstall =
+          oldAttrs.postInstall or ""
+          + ''
+            wrapProgram $out/bin/${oldAttrs.meta.mainProgram} \
+              --add-flags "--wayland-text-input-version=3"
+          '';
+      });
 
       signal-desktop = prev.signal-desktop.overrideAttrs (oldAttrs: {
         postInstall =
