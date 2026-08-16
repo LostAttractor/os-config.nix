@@ -1,4 +1,4 @@
-{ config, user, ... }:
+{ config, user, pkgs, ... }:
 let
   additional = ''
     [app]
@@ -14,9 +14,13 @@ in
     extraModprobeConfig = "options kvmfr static_size_mb=64";
   };
 
-  services.udev.extraRules = ''
-    SUBSYSTEM=="kvmfr", OWNER="${user}", GROUP="kvm", MODE="0660"
-  '';
+  services.udev.packages = [ (pkgs.writeTextFile {
+    name = "kvmfr-udev-rules";
+    destination = "/lib/udev/rules.d/60-kvmfr.rules";
+    text = ''
+      ACTION!="remove", SUBSYSTEM=="kvmfr", TAG+="uaccess"
+    '';
+  }) ];
 
   virtualisation.libvirtd.qemu.verbatimConfig = ''
     namespaces = []
