@@ -47,10 +47,10 @@
           # Main Sans-Serif Font 
           "Cantarell"
           # CJK Fallback
-          "Noto Sans SC"
-          "Noto Sans TC"
-          "Noto Sans JP"
-          "Noto Sans KR"
+          "Noto Sans CJK SC"
+          "Noto Sans CJK TC"
+          "Noto Sans CJK JP"
+          "Noto Sans CJK KR"
           # Unicode Fallback
           "DejaVu Sans"
         ];
@@ -58,10 +58,10 @@
           # Main Serif Font
           "Noto Serif"
           # CJK Fallback
-          "Noto Serif SC"
-          "Noto Serif TC"
-          "Noto Serif JP"
-          "Noto Serif KR"
+          "Noto Serif CJK SC"
+          "Noto Serif CJK TC"
+          "Noto Serif CJK JP"
+          "Noto Serif CJK KR"
           # Unicode Fallback
           "DejaVu Serif"
         ];
@@ -69,10 +69,10 @@
           # Main Mono Font
           "JetBrainsMono"
           # CJK Fallback
-          "Noto Mono SC"
-          "Noto Mono TC"
-          "Noto Mono JP"
-          "Noto Mono KR"
+          "Noto Sans Mono CJK SC"
+          "Noto Sans Mono CJK TC"
+          "Noto Sans Mono CJK JP"
+          "Noto Sans Mono CJK KR"
           # Unicode Fallback
           "DejaVu Sans Mono"
         ];
