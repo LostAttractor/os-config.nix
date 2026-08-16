@@ -1,0 +1,13 @@
+diff --git a/ddcci/ddcci.c b/ddcci/ddcci.c
+index 6b41eab..8874c76 100644
+--- a/ddcci/ddcci.c
++++ b/ddcci/ddcci.c
+@@ -472,7 +472,7 @@ static int ddcci_identify_device(struct i2c_client *client, unsigned char addr,
+ 		dev_dbg(&client->dev,
+ 			"[%02x:%02x] identification response invalid (expected first byte %02x, got %02x)\n",
+ 			client->addr << 1, addr, addr, buffer[0]);
+-		return -ENODEV;
++		return -EBADMSG;
+ 	}
+ 
+ 	/* Check if first byte is doubled (QUIRK_SKIP_FIRST_BYTE) */
