@@ -1,0 +1,623 @@
+diff --git a/ucm2/USB-Audio/USB-Audio.conf b/ucm2/USB-Audio/USB-Audio.conf
+index 24f1bad..e5b9311 100644
+--- a/ucm2/USB-Audio/USB-Audio.conf
++++ b/ucm2/USB-Audio/USB-Audio.conf
+@@ -157,6 +157,8 @@ Macro.rode-rodecaster-pro-2.RegexMatch {
+ 	Profile "RODE/RODECaster-Pro-II"
+ }
+ 
++Macro.yamaha-urx44.StringMatch		"Id='0499:1770' Profile='Yamaha/URX44'"
++
+ Macro.roland-quadcapture.StringMatch	"Id='0582:012f' Profile='Roland/Quad-Capture'"
+ Macro.roland-bridgecast.StringMatch	"Id='0582:02b7' Profile='Roland/BridgeCast'"
+ 
+diff --git a/ucm2/USB-Audio/Yamaha/URX44-HiFi.conf b/ucm2/USB-Audio/Yamaha/URX44-HiFi.conf
+new file mode 100644
+index 0000000..30ac4d2
+--- /dev/null
++++ b/ucm2/USB-Audio/Yamaha/URX44-HiFi.conf
+@@ -0,0 +1,140 @@
++Include.pcm_split.File "/common/pcm/split.conf"
++
++Macro [
++	{
++		SplitPCM {
++			Name "yamaha_urx44_stereo_out"
++			Direction Playback
++			Channels 2
++			HWChannels 18
++			HWChannelPos0 FL  # USB MAIN A Left
++			HWChannelPos1 FR  # USB MAIN A Right
++			HWChannelPos2 FL  # USB MAIN B Left
++			HWChannelPos3 FR  # USB MAIN B Right
++			HWChannelPos4 FL  # USB MAIN C Left
++			HWChannelPos5 FR  # USB MAIN C Right
++		}
++	}
++	{
++		SplitPCM {
++			Name "yamaha_urx44_stereo_in"
++			Direction Capture
++			Channels 2
++			HWChannels 18
++			HWChannelPos0 FL  # USB MAIN A Left
++			HWChannelPos1 FR  # USB MAIN A Right
++			HWChannelPos2 FL  # USB MAIN B Left
++			HWChannelPos3 FR  # USB MAIN B Right
++			HWChannelPos4 FL  # USB MAIN C Left
++			HWChannelPos5 FR  # USB MAIN C Right
++		}
++	}
++]
++
++SectionDevice."Line 1" {
++	Comment "USB MAIN A"
++
++	Value {
++		PlaybackPriority 120
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 0
++		Channel1 1
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 2" {
++	Comment "USB MAIN B"
++
++	Value {
++		PlaybackPriority 110
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 2
++		Channel1 3
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 3" {
++	Comment "USB MAIN C"
++
++	Value {
++		PlaybackPriority 100
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 4
++		Channel1 5
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 4" {
++	Comment "USB MAIN A"
++
++	Value {
++		CapturePriority 120
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 0
++		Channel1 1
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 5" {
++	Comment "USB MAIN B"
++
++	Value {
++		CapturePriority 110
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 2
++		Channel1 3
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 6" {
++	Comment "USB MAIN C"
++
++	Value {
++		CapturePriority 100
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 4
++		Channel1 5
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
+\ No newline at end of file
+diff --git a/ucm2/USB-Audio/Yamaha/URX44-Multitrack.conf b/ucm2/USB-Audio/Yamaha/URX44-Multitrack.conf
+new file mode 100644
+index 0000000..6a04c56
+--- /dev/null
++++ b/ucm2/USB-Audio/Yamaha/URX44-Multitrack.conf
+@@ -0,0 +1,434 @@
++Include.pcm_split.File "/common/pcm/split.conf"
++
++Macro [
++	{
++		SplitPCM {
++			Name "yamaha_urx44_stereo_out"
++			Direction Playback
++			Channels 2
++			HWChannels 18
++			HWChannelPos0 FL
++			HWChannelPos1 FR
++		}
++	}
++	{
++		SplitPCM {
++			Name "yamaha_urx44_stereo_in"
++			Direction Capture
++			Channels 2
++			HWChannels 18
++			HWChannelPos0 FL
++			HWChannelPos1 FR
++		}
++	}
++	{
++		SplitPCM {
++			Name "yamaha_urx44_mono_in"
++			Direction Capture
++			Channels 1
++			HWChannels 6
++			HWChannelPos6 MONO
++			HWChannelPos7 MONO
++			HWChannelPos8 MONO
++			HWChannelPos9 MONO
++		}
++	}
++]
++
++SectionDevice."Line 1" {
++	Comment "USB MAIN A"
++
++	Value {
++		PlaybackPriority 180
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 0
++		Channel1 1
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 2" {
++	Comment "USB MAIN B"
++
++	Value {
++		PlaybackPriority 170
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 2
++		Channel1 3
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 3" {
++	Comment "USB MAIN C"
++
++	Value {
++		PlaybackPriority 160
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 4
++		Channel1 5
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 4" {
++	Comment "USB DAW 1-2"
++
++	Value {
++		PlaybackPriority 140
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 6
++		Channel1 7
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 5" {
++	Comment "USB DAW 3-4"
++
++	Value {
++		PlaybackPriority 140
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 8
++		Channel1 9
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 6" {
++	Comment "USB DAW 5-6"
++
++	Value {
++		PlaybackPriority 130
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 10
++		Channel1 11
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 7" {
++	Comment "USB DAW 7-8"
++
++	Value {
++		PlaybackPriority 120
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 12
++		Channel1 13
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 8" {
++	Comment "USB DAW 9-10"
++
++	Value {
++		PlaybackPriority 110
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 14
++		Channel1 15
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 9" {
++	Comment "USB DAW 11-12"
++
++	Value {
++		PlaybackPriority 100
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_out"
++		Direction Playback
++		HWChannels 18
++		Channels 2
++		Channel0 16
++		Channel1 17
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 10" {
++	Comment "USB MAIN A"
++
++	Value {
++		CapturePriority 220
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 0
++		Channel1 1
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 11" {
++	Comment "USB MAIN B"
++
++	Value {
++		CapturePriority 210
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 2
++		Channel1 3
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 12" {
++	Comment "USB MAIN C"
++
++	Value {
++		CapturePriority 200
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 4
++		Channel1 5
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Mic 1" {
++	Comment "USB DAW 1"
++
++	Value {
++		CapturePriority 190
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_mono_in"
++		Direction Capture
++		HWChannels 18
++		Channels 1
++		Channel0 6
++		ChannelPos0 MONO
++	}
++}
++
++SectionDevice."Mic 2" {
++	Comment "USB DAW 2"
++
++	Value {
++		CapturePriority 180
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_mono_in"
++		Direction Capture
++		HWChannels 18
++		Channels 1
++		Channel0 7
++		ChannelPos0 MONO
++	}
++}
++
++SectionDevice."Line 13" {
++	Comment "USB DAW 1/2"
++
++	ConflictingDevice [
++		"Mic 1"
++		"Mic 2"
++	]
++
++	Value {
++		CapturePriority 170
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 6
++		Channel1 7
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Mic 3" {
++	Comment "USB DAW 3"
++
++	Value {
++		CapturePriority 160
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_mono_in"
++		Direction Capture
++		HWChannels 18
++		Channels 1
++		Channel0 8
++		ChannelPos0 MONO
++	}
++}
++
++SectionDevice."Mic 4" {
++	Comment "USB DAW 4"
++
++	Value {
++		CapturePriority 150
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_mono_in"
++		Direction Capture
++		HWChannels 18
++		Channels 1
++		Channel0 9
++		ChannelPos0 MONO
++	}
++}
++
++SectionDevice."Line 14" {
++	Comment "USB DAW 3/4"
++
++	ConflictingDevice [
++		"Mic 3"
++		"Mic 4"
++	]
++
++	Value {
++		CapturePriority 140
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 8
++		Channel1 9
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 15" {
++	Comment "USB DAW 5-6"
++
++	Value {
++		CapturePriority 130
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 10
++		Channel1 11
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 16" {
++	Comment "USB DAW 7-8"
++
++	Value {
++		CapturePriority 120
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 12
++		Channel1 13
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 17" {
++	Comment "USB DAW 9-10"
++
++	Value {
++		CapturePriority 110
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 14
++		Channel1 15
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
++
++SectionDevice."Line 18" {
++	Comment "USB DAW 11-12"
++
++	Value {
++		CapturePriority 100
++	}
++	Macro.pcm_split.SplitPCMDevice {
++		Name "yamaha_urx44_stereo_in"
++		Direction Capture
++		HWChannels 18
++		Channels 2
++		Channel0 16
++		Channel1 17
++		ChannelPos0 FL
++		ChannelPos1 FR
++	}
++}
+\ No newline at end of file
+diff --git a/ucm2/USB-Audio/Yamaha/URX44.conf b/ucm2/USB-Audio/Yamaha/URX44.conf
+new file mode 100644
+index 0000000..696804f
+--- /dev/null
++++ b/ucm2/USB-Audio/Yamaha/URX44.conf
+@@ -0,0 +1,15 @@
++Comment "Yamaha URX44"
++
++SectionUseCase."HiFi" {
++	Comment "Default"
++	File "/USB-Audio/Yamaha/URX44-HiFi.conf"
++}
++
++SectionUseCase."Multitrack" {
++	Comment "Multitrack"
++	File "/USB-Audio/Yamaha/URX44-Multitrack.conf"
++}
++
++Include.dhw.File "/common/directm.conf"
++
++Macro.0.DirectUseCase { Id="Direct" PlaybackChannels=18 CaptureChannels=18 }
+\ No newline at end of file
