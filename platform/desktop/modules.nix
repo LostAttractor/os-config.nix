@@ -8,7 +8,7 @@ _: {
     ../modules/hardware/imobiledevice.nix
     # platform/modules/features
     ../modules/features/audio/pipewire.nix
-    ../modules/features/ime/fcitx5.nix
+    ../modules/features/ime/ibus.nix
     ../modules/features/avahi.nix
     ../modules/features/printing.nix
     ../modules/features/flatpak.nix
