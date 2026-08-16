@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   programs.obs-studio = {
     enable = true;
@@ -8,10 +8,15 @@
       obs-text-pthread
       obs-vkcapture
       waveform
+      obs-move-transition
+      advanced-scene-switcher
       input-overlay
-      # Plugins that no longer in use
-      # obs-multi-rtmp
-    ];
+    ] ++ (with (import inputs.nixpkgs-stable {
+      inherit (pkgs.stdenv.hostPlatform) system;
+      config = pkgs.config;
+    }).obs-studio-plugins; [
+      obs-backgroundremoval
+    ]);
   };
 
   home.packages = with pkgs; [
