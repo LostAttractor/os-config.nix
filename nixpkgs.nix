@@ -6,32 +6,39 @@
     "electron-39.8.10"
   ];
 
-  nixpkgs.overlays = [
-    inputs.nur.overlays.default
-    inputs.nix-vscode-extensions.overlays.default
+  nixpkgs.overlays = with inputs; [
+    nur.overlays.default
+    nix-vscode-extensions.overlays.default
 
     (final: prev: {
       chromium = prev.chromium.override {
         commandLineArgs = [
           "--wayland-text-input-version=3"
-          "--enable-features=VaapiVideoDecoder"
+          "--use-gl=angle"
+          "--use-angle=vulkan"
+          "--enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks,UseMultiPlaneFormatForHardwareVideo"
         ];
       };
       google-chrome = prev.google-chrome.override {
         commandLineArgs = [
           "--wayland-text-input-version=3"
-          "--enable-features=VaapiVideoDecoder"
+          "--use-gl=angle"
+          "--use-angle=vulkan"
+          "--enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks,UseMultiPlaneFormatForHardwareVideo"
         ];
       };
-      brave = prev.brave.override {
+      brave = prev.brave.overrideAttrs (old: {
         commandLineArgs = [
           "--wayland-text-input-version=3"
-          "--enable-features=VaapiVideoDecoder"
+          "--use-gl=angle"
+          "--use-angle=vulkan"
+          "--enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks,UseMultiPlaneFormatForHardwareVideo"
         ];
-      };
+      });
+
+
       vscode = prev.vscode.override { commandLineArgs = [ "--wayland-text-input-version=3" ]; };
       qq = prev.qq.override { commandLineArgs = [ "--wayland-text-input-version=3" ]; };
-
       signal-desktop = prev.signal-desktop.overrideAttrs (oldAttrs: {
         postInstall =
           oldAttrs.postInstall or ""
