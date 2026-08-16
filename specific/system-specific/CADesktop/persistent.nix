@@ -1,0 +1,22 @@
+_: {
+  environment.persistence."/persistent" = {
+    hideMounts = true;
+
+    directories = [
+      "/etc/NetworkManager/system-connections"
+      "/etc/v2raya"
+      "/etc/lact"
+      "/etc/gnome-remote-desktop"
+      "/var/lib"
+      "/var/log"
+    ];
+
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+    ];
+  };
+}

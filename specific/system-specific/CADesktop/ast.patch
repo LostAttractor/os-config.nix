@@ -1,0 +1,12 @@
+diff --git a/drivers/gpu/drm/ast/ast_dp.c b/drivers/gpu/drm/ast/ast_dp.c
+index 8e650a02c5287..0f7d3b33f200d 100644
+--- a/drivers/gpu/drm/ast/ast_dp.c
++++ b/drivers/gpu/drm/ast/ast_dp.c
+@@ -39,7 +39,6 @@ static const struct ast_astdp_mode_index_table_entry ast_astdp_mode_index_table[
+ 	{ 1600, 1200, ASTDP_1600x1200_60 },
+ 	{ 1680, 1050, ASTDP_1680x1050_60_RB },
+ 	{ 1920, 1080, ASTDP_1920x1080_60 },
+-	{ 1920, 1200, ASTDP_1920x1200_60 },
+ 	{ 0 }
+ };
+ 

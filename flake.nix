@@ -56,6 +56,32 @@
     in
     rec {
       nixosConfigurations = {
+        # Desktop PC
+        CADesktop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs user;
+          };
+          modules = with inputs; [
+            ./configuration.nix
+            ./nixpkgs.nix
+            ./platform/desktop
+            ./specific/system-specific/CADesktop
+            ./specific/hardware-specific/ca-desktop
+            ./specific/architecture-specific/x86-64
+            ./specific/user-specific
+            # ./lanzaboote.nix
+            ./home-manager.nix
+            disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
+            lanzaboote.nixosModules.lanzaboote
+            home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
+            aagl.nixosModules.default
+            musnix.nixosModules.musnix
+            { nixpkgs.config.allowUnfree = true; }
+          ];
+        };
         # Zephyrus G14
         CALaptopG14 = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
