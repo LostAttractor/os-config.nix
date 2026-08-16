@@ -14,6 +14,8 @@
     htop
     tmux
     lsof
+    # Performance
+    perf
     # Devices
     pciutils
     usbutils
