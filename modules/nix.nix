@@ -27,15 +27,9 @@
   # Optimize nix store by using hard-link
   nix.settings.auto-optimise-store = true;
 
-  # Automatic GC
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 7d";
-  };
-
   nix.extraOptions = ''
-    min-free = ${toString (10 * 1024 * 1024 * 1024)}
-    max-free = ${toString (20 * 1024 * 1024 * 1024)}
+    min-free = ${toString (40 * 1024 * 1024 * 1024)}
+    max-free = ${toString (50 * 1024 * 1024 * 1024)}
   '';
+
 }
