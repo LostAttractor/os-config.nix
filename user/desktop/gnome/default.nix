@@ -36,7 +36,5 @@
   imports = [
     ./dconf/gnome.nix
     ./dconf/fonts.nix
-    ./dconf/display/hidpi.nix
-    ./dconf/display/vrr.nix
   ];
 }
