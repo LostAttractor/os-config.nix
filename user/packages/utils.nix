@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     # System information tool
-    neofetch
     hyfetch
     fastfetch
     screenfetch
