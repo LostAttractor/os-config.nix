@@ -49,10 +49,12 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.consoleMode = lib.mkDefault "auto";
+  # boot.loader.systemd-boot.consoleMode = lib.mkDefault "max";
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 180;
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+  boot.loader.systemd-boot.memtest86.enable = true;
+  boot.loader.timeout = 60;
+  # boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_xanmod_latest;
+  # boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   # Using Tmpfs for /tmp to speed up the system
   # If you have less memory, this can cause Nix builds to fail
