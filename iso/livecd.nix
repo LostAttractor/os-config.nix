@@ -17,6 +17,9 @@ _: {
     # modules/features
     ../modules/features/virtualisation.nix
     ../modules/features/docker.nix
+    ../modules/features/filesystems.nix
+    ../modules/features/fwupd.nix
+    ../modules/features/pcscd.nix
     ../modules/features/appimage.nix
     ../modules/features/nix-ld.nix
     # package
