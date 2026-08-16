@@ -12,11 +12,9 @@
       gsconnect
       blur-my-shell
       dock-from-dash
-      dash-to-dock
+      bottom-dash-panel
       caffeine
-      pano
       astra-monitor
-      wiggle
       # kimpanel
       ibus-tweaker
       open-desktop-file-location
@@ -29,8 +27,8 @@
       # Extensions that no longer in use
       # openweather
       # tiling-assistant
-      # burn-my-windows
-      # miniview
+      # hanabi
+      burn-my-windows
     ]);
 
   imports = [
