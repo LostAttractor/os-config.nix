@@ -58,9 +58,10 @@
 
   # Using Tmpfs for /tmp to speed up the system
   # If you have less memory, this can cause Nix builds to fail
-  boot.tmp.useTmpfs = true;
+  # boot.tmp.useTmpfs = true;
+  # boot.tmp.tmpfsHugeMemoryPages = "within_size";
   # You can choose whether to clean /tmp on boot, but this is not necessary for Tmpfs
-  # boot.tmp.cleanOnBoot = true;
+  boot.tmp.cleanOnBoot = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
