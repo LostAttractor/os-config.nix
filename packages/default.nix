@@ -27,7 +27,6 @@
     ethtool
     trippy
     q
-    dogdns
     # Graphics
     vulkan-tools
     mesa-demos
