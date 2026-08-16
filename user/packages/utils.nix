@@ -77,6 +77,7 @@
     hugo
     devbox
     charm-freeze
+    android-tools
     # Kubernetes
     kubectl
     kubectx
