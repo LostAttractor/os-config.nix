@@ -4,6 +4,7 @@ _: {
     ../platform/desktop/modules.nix
     # modules/basic
     ../modules/time.nix
+    ../modules/i18n.nix
     ../modules/shell.nix
     ../modules/nix.nix
     ../modules/registy.nix
