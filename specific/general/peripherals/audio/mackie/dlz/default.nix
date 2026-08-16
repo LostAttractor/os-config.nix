@@ -1,11 +1,8 @@
 { lib, ... }: 
 let
-  node = "usb-LOUD_Audio__LLC_DLZ_Creator_no_serial_number-00";
-  nodeIn = "alsa_input.${node}.multichannel-input";
-  nodeOut = "alsa_output.${node}.analog-surround-40";
-  # For Pro Audio
-  # nodeIn = "alsa_input.${node}.pro-input-0";
-  # nodeOut = "alsa_output.${node}.pro-output-0";
+  node = "usb-LOUD_Audio__LLC_DLZ_Creator";
+  nodeIn = "~alsa_input.${node}*";
+  nodeOut = "~alsa_output.${node}*";
 
   makeLoopbackIn = name: portCapture: portPlayback: {
     name = "libpipewire-module-loopback";

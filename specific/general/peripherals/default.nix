@@ -4,6 +4,6 @@ _: {
     ./keyboard/via.nix
     ./tablet/opentabletdriver.nix
     ./radio/rtl-sdr.nix
-    ./audio/mackie-dlz.nix
+    ./audio/mackie/dlz
   ];
 }
