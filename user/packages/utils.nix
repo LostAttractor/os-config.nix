@@ -102,6 +102,8 @@
     file
     binwalk
     hexyl
+    # NFC
+    (proxmark3.override { withGeneric = true; standalone =  "HF_UNISNIFF"; hardwarePlatformExtras = "FLASH"; })
     # Other utils
     openssl
     sshx
