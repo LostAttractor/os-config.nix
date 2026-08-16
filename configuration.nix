@@ -36,6 +36,7 @@
     # programs
     ./programs/utils.nix
     ./programs/mosh.nix
+    ./programs/localsend.nix
     ./programs/waydroid.nix
     # user config
     ./user
