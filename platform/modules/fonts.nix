@@ -79,7 +79,8 @@
         emoji = [ "Noto Color Emoji" ];
       };
 
-      subpixel.rgba = "rgb";
+      # Subpixel renderering not working for fractional scaling without wp_fractional_scaling_v1
+      # subpixel.rgba = "rgb";
     };
   };
 }
