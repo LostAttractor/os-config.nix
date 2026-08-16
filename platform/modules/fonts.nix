@@ -2,8 +2,10 @@
 {
   fonts = {
     packages = with pkgs; [
-      # Cantarell
+      # Cantarell font
       cantarell-fonts
+      # Inter font
+      inter
       # Noto Fonts
       noto-fonts
       noto-fonts-color-emoji
@@ -21,21 +23,23 @@
       nerd-fonts.fira-code
       jetbrains-mono
       nerd-fonts.jetbrains-mono
+      hack-font
+      nerd-fonts.hack
       nerd-fonts.droid-sans-mono
+      # 微软雅黑/正黑
+      vista-fonts
+      vista-fonts-cht
+      vista-fonts-chs
+      # 文泉驿
+      wqy_microhei
+      wqy_zenhei
       # Some unused fonts
-      # Inter font
-      # inter
       # Source fonts
       # source-sans-pro
       # source-serif-pro
       # source-code-pro
-      # 文泉驿
-      # wqy_microhei
-      # wqy_zenhei
       # 更纱黑体
       # sarasa-gothic
-      # hack fonts (monospace)
-      # hack-font
     ];
     fontconfig = {
       defaultFonts = {
