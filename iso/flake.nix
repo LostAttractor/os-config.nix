@@ -35,7 +35,7 @@
         gnome = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
-            inherit inputs system;
+            inherit inputs;
             user = "nixos";
           };
           modules = with inputs; [
@@ -52,7 +52,7 @@
         plasma6 = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
-            inherit inputs system;
+            inherit inputs;
             user = "nixos";
           };
           modules = with inputs; [
