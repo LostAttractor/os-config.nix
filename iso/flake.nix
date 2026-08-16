@@ -20,26 +20,12 @@
     # Spicetify
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-    # daeuniverse
-    daeuniverse.url = "github:daeuniverse/flake.nix";
-    daeuniverse.inputs.nixpkgs.follows = "nixpkgs";
     # xivlauncher-rb
     nixos-xivlauncher-rb.url = "github:drakon64/nixos-xivlauncher-rb";
     nixos-xivlauncher-rb.inputs.nixpkgs.follows = "nixpkgs";
     # vscode-extensions
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
-    # flake-programs-sqlite
-    flake-programs-sqlite.url = "github:wamserma/flake-programs-sqlite";
-    flake-programs-sqlite.inputs.nixpkgs.follows = "nixpkgs";
-    # UMU Launcher
-    umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
-    umu.inputs.nixpkgs.follows = "nixpkgs";
-    # firefox-gnome-theme
-    firefox-gnome-theme = {
-      url = "github:rafaelmardojai/firefox-gnome-theme";
-      flake = false;
-    };
   };
 
   outputs =
@@ -60,8 +46,6 @@
             ../home-manager.nix
             home-manager.nixosModules.home-manager
             aagl.nixosModules.default
-            daeuniverse.nixosModules.daed
-            flake-programs-sqlite.nixosModules.programs-sqlite
             { nixpkgs.config.allowUnfree = true; }
           ];
         };
@@ -77,8 +61,6 @@
             ../home-manager.nix
             home-manager.nixosModules.home-manager
             aagl.nixosModules.default
-            flake-programs-sqlite.nixosModules.programs-sqlite
-            daeuniverse.nixosModules.daed
             { nixpkgs.config.allowUnfree = true; }
           ];
         };
