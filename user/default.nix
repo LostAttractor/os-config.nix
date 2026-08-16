@@ -13,11 +13,15 @@
         "docker"
         "libvirtd"
         "adbusers"
-        "plugdev"
         "wireshark"
         "cdrom"
         "dialout"
         "input"
+        "uinput"
+        "video"
+        "audio"
+        "gamemode"
+        "scanner"
       ];
       # Set passwd directly
       initialHashedPassword = "$6$ER3vW7b0o74VUb5S$MhA3IXzTJpJMkfLXZiPjVHQdmHRQX9Axfi2G5nLJIS/Hm98rw7.Pd39JeVDgPrvWUUJZAH8BfSdHLMyJI2zLu/";
