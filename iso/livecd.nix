@@ -25,6 +25,8 @@ _: {
     # package
     ../packages
     ../packages/gaming.nix
+    # programs
+    ../programs/utils.nix
   ];
 
   isoImage.squashfsCompression = "zstd";
