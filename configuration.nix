@@ -38,6 +38,7 @@
     ./programs/mosh.nix
     ./programs/localsend.nix
     ./programs/waydroid.nix
+    ./programs/k3b.nix
     # user config
     ./user
   ];
