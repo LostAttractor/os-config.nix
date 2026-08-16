@@ -72,7 +72,7 @@
     # Disk analayzer
     gdu
     duf
-    # Develop Tools
+    # Develop Toolsslidev-cli
     gh
     hugo
     devbox
