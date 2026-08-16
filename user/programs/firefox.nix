@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 let
   profile = "default";
 in
@@ -8,6 +8,11 @@ in
 
   programs.firefox = {
     enable = true;
+    package = (import inputs.nixpkgs-stable {
+      # https://discourse.nixos.org/t/how-do-i-configure-multiple-nixpkgss-in-flakes/59581/2
+      inherit (pkgs.stdenv.hostPlatform) system;
+      config = pkgs.config;
+    }).firefox-bin;
     profiles.${profile} = {
       extraConfig = ''
         ${builtins.readFile "${inputs.firefox-gnome-theme}/configuration/user.js"}
