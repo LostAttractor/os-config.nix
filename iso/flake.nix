@@ -4,11 +4,13 @@
   inputs = {
     # Nix Packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     # User Packages
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # NUR Packages
     nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
     # Apple Silicon Support
     apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
     apple-silicon-support.inputs.nixpkgs.follows = "nixpkgs";
