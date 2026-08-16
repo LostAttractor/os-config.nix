@@ -11,6 +11,7 @@ _: {
           }
         ];
       };
+      gui.mouseEvents = false;
     };
   };
 }
