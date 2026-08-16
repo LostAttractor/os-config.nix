@@ -19,7 +19,6 @@ in
   nix.buildMachines = [
     {
       hostName = "nixremote@hydra.home.lostattractor.net";
-      # protocol = "ssh-ng";
       systems = systems;
       maxJobs = 4;
       speedFactor = 4;
