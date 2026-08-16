@@ -99,6 +99,7 @@
     wineWow64Packages.staging
     winetricks
     # Binary Analayzer
+    file
     binwalk
     hexyl
     # Other utils
