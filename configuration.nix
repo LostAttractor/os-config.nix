@@ -33,6 +33,8 @@
     # package
     ./packages
     ./packages/gaming.nix
+    # programs
+    ./programs/utils.nix
     ./programs/waydroid.nix
     # user config
     ./user
