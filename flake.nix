@@ -83,10 +83,10 @@
           ];
         };
         # Zephyrus G14
-        CALaptopG14 = nixpkgs.lib.nixosSystem rec {
+        CALaptopG14 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit inputs user system;
+            inherit inputs user;
           };
           modules = with inputs; [
             ./configuration.nix
@@ -107,10 +107,10 @@
             { nixpkgs.config.allowUnfree = true; }
           ];
         };
-        CALaptopR9000P = nixpkgs.lib.nixosSystem rec {
+        CALaptopR9000P = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit inputs user system;
+            inherit inputs user;
           };
           modules = with inputs; [
             ./configuration.nix
@@ -136,7 +136,7 @@
         CAAppleSilicon = nixpkgs.lib.nixosSystem rec {
           system = "aarch64-linux";
           specialArgs = {
-            inherit inputs user system;
+            inherit inputs user;
           };
           modules = with inputs; [
             ./configuration.nix
