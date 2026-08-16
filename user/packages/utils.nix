@@ -96,7 +96,7 @@
     nix-update
     attic-client
     # Wine
-    wine
+    wineWow64Packages.staging
     winetricks
     # Binary Analayzer
     binwalk
