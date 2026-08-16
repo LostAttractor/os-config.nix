@@ -66,6 +66,7 @@
     xray
     sing-box
     tor
+    (callPackage ./uudeck {})
     # IMPI
     ipmitool
     # Disk analayzer
