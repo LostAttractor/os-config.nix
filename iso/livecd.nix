@@ -28,6 +28,7 @@ _: {
     # programs
     ../programs/utils.nix
     ../programs/mosh.nix
+    ../programs/localsend.nix
   ];
 
   isoImage.squashfsCompression = "zstd";
