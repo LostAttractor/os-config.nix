@@ -7,20 +7,20 @@
     ./modules.nix
   ];
 
-  specialisation =
-    lib.mapAttrs
-      (name: config: {
-        configuration = {
-          system.nixos.tags = [ name ];
-          disabledModules = [ ./gnome ];
-        } // config;
-      })
-      {
-        "Hyprland" = {
-          imports = [ ./hyprland ];
-        };
-        "Plasma" = {
-          imports = [ ./plasma ];
-        };
-      };
+  # specialisation =
+  #   lib.mapAttrs
+  #     (name: config: {
+  #       configuration = {
+  #         system.nixos.tags = [ name ];
+  #         disabledModules = [ ./gnome ];
+  #       } // config;
+  #     })
+  #     {
+  #       "Hyprland" = {
+  #         imports = [ ./hyprland ];
+  #       };
+  #       "Plasma" = {
+  #         imports = [ ./plasma ];
+  #       };
+  #     };
 }
