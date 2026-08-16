@@ -24,8 +24,11 @@
     ripgrep
     # Find
     fd
+    # B4
+    b4
     # TLDR
     tldr
+    pay-respects
     # File manager
     yazi
     # Screenshot
@@ -36,6 +39,10 @@
     nali
     tcping-go
     gping
+    stuntman
+    # Spedtest utils
+    ookla-speedtest
+    cfspeedtest
     # Wireless utils
     iw
     # Web video downloader
