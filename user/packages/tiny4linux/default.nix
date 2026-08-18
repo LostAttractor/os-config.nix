@@ -10,10 +10,13 @@
   makeDesktopItem,
   # GUI dependencies
   libGL,
+  libx11,
+  libxcursor,
+  libxi,
+  libxrandr,
   libxkbcommon,
   vulkan-loader,
   wayland,
-  xorg,
   # Optional features
   withGui ? true,
   withCli ? true,
@@ -54,10 +57,10 @@ rustPlatform.buildRustPackage rec {
     libxkbcommon
     vulkan-loader
     wayland
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXi
-    xorg.libXrandr
+    libx11
+    libxcursor
+    libxi
+    libxrandr
   ];
 
   desktopItems = lib.optionals withGui [
@@ -100,10 +103,10 @@ rustPlatform.buildRustPackage rec {
         libxkbcommon
         vulkan-loader
         wayland
-        xorg.libX11
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXrandr
+        libx11
+        libxcursor
+        libxi
+        libxrandr
       ]}"
 
       # Install icons
