@@ -64,22 +64,11 @@
           };
           modules = with inputs; [
             ./configuration.nix
-            ./nixpkgs.nix
-            ./platform/desktop
             ./specific/system-specific/CADesktop
             ./specific/hardware-specific/ca-desktop
             ./specific/architecture-specific/x86-64
-            ./specific/user-specific
             # ./lanzaboote.nix
-            ./home-manager.nix
             disko.nixosModules.disko
-            impermanence.nixosModules.impermanence
-            lanzaboote.nixosModules.lanzaboote
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
-            aagl.nixosModules.default
-            musnix.nixosModules.musnix
-            { nixpkgs.config.allowUnfree = true; }
           ];
         };
         # Zephyrus G14
@@ -90,21 +79,11 @@
           };
           modules = with inputs; [
             ./configuration.nix
-            ./nixpkgs.nix
-            ./platform/desktop
             ./specific/system-specific/CALaptopG14
             ./specific/hardware-specific/asus-zephyrus-ga401
             ./specific/architecture-specific/x86-64
-            ./specific/user-specific
             ./lanzaboote.nix
-            ./home-manager.nix
             nixos-hardware.nixosModules.asus-zephyrus-ga401
-            impermanence.nixosModules.impermanence
-            lanzaboote.nixosModules.lanzaboote
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
-            aagl.nixosModules.default
-            { nixpkgs.config.allowUnfree = true; }
           ];
         };
         CALaptopR9000P = nixpkgs.lib.nixosSystem {
@@ -114,22 +93,12 @@
           };
           modules = with inputs; [
             ./configuration.nix
-            ./nixpkgs.nix
-            ./platform/desktop
             ./specific/system-specific/CALaptopR9000P
             ./specific/hardware-specific/lenovo-legion-16ach6h
             ./specific/architecture-specific/x86-64
-            ./specific/user-specific
             ./lanzaboote.nix
-            ./home-manager.nix
             disko.nixosModules.disko
             nixos-hardware.nixosModules.lenovo-legion-16ach6h  # hardware.nvidia.prime.offload.enable may cause xorg crash
-            impermanence.nixosModules.impermanence
-            lanzaboote.nixosModules.lanzaboote
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
-            aagl.nixosModules.default
-            { nixpkgs.config.allowUnfree = true; }
           ];
         };
         # CAAppleSilicon
@@ -140,14 +109,9 @@
           };
           modules = with inputs; [
             ./configuration.nix
-            ./nixpkgs.nix
-            ./platform/desktop
             ./specific/system-specific/CAAppleSilicon
             ./specific/hardware-specific/apple-silicon
-            ./specific/user-specific
             apple-silicon-support.nixosModules.apple-silicon-support
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
           ];
         };
       };

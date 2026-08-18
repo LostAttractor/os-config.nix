@@ -11,6 +11,13 @@
 
 {
   imports = [
+    ./nixpkgs.nix
+    ./platform/desktop
+    ./specific/user-specific
+    ./home-manager.nix
+    inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
+    inputs.musnix.nixosModules.musnix
     # modules/basic
     ./modules/time.nix
     ./modules/i18n.nix
@@ -37,7 +44,6 @@
     ./secrets
     # package
     ./packages
-    ./packages/gaming.nix
     # programs
     ./programs/utils.nix
     ./programs/mosh.nix
