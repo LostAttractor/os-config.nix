@@ -4,7 +4,10 @@ _: {
     homes = "zroot/home";
   };
 
-  boot.zfs.requestEncryptionCredentials = false;
+  boot.zfs = {
+    forceImportRoot = false;
+    requestEncryptionCredentials = false;
+  };
 
   networking.hostId = "007f0200";
 }
