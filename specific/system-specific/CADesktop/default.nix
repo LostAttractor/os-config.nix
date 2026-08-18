@@ -64,7 +64,6 @@
   imports = [
     ../../general/zfs
     ../../general/zfs/docker.nix
-    ../../general/patch
     ../../general/peripherals
     ../../general/amdgpu/cap_sys_nice_begone.nix
     ./disk-config.nix

@@ -32,6 +32,7 @@
     ./modules/features/pcscd.nix
     ./modules/features/appimage.nix
     ./modules/features/nix-ld.nix
+    ./specific/general/patch
     # secrets
     ./secrets
     # package
