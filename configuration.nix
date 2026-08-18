@@ -58,7 +58,7 @@
   boot.loader.systemd-boot.enable = true;
   # boot.loader.systemd-boot.consoleMode = lib.mkDefault "max";
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.memtest86.enable = true;
+  boot.loader.systemd-boot.memtest86.enable = pkgs.stdenv.hostPlatform.isx86;
   boot.loader.timeout = 60;
   # boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_xanmod_latest;
   # boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
