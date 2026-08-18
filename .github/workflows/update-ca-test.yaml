@@ -6,6 +6,9 @@ on:
       - master
       - ca-test
 
+permissions:
+  contents: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
