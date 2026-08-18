@@ -1,9 +1,9 @@
-_:
+{ lib, ... }:
 {
   networking.hostName = "CALaptopG14"; # Define hostname.
 
   # Do less swapping instead of droping page cache (default=60)
-  boot.kernel.sysctl."vm.swappiness" = 30;
+  boot.kernel.sysctl."vm.swappiness" = lib.mkForce 30;
 
   imports = [
     ../../general/btrfs/autoscrub.nix
