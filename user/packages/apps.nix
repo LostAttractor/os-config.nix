@@ -32,14 +32,6 @@
     shortwave
     vlc
     (mpv.override { mpv-unwrapped = mpv-unwrapped.override { cddaSupport = true; }; })
-    # Games
-    umu-launcher
-    protonplus
-    osu-lazer-bin
-    lunar-client
-    (inputs.nixos-xivlauncher-rb.packages.${stdenv.hostPlatform.system}.default.override { useGameMode = true; })
-    lutris
-    bottles
     # AI
     codex
     chatgpt
@@ -91,6 +83,14 @@
     cameractrls-gtk4
     roomeqwizard
     (callPackage ./tiny4linux {})
+    ] ++ lib.optionals stdenv.hostPlatform.isx86_64 [
+      umu-launcher
+      protonplus
+      osu-lazer-bin
+      lunar-client
+      (inputs.nixos-xivlauncher-rb.packages.${stdenv.hostPlatform.system}.default.override { useGameMode = true; })
+      lutris
+      bottles
     ] ++ (with (import inputs.nixpkgs-stable {
       # https://discourse.nixos.org/t/how-do-i-configure-multiple-nixpkgss-in-flakes/59581/2
       inherit (stdenv.hostPlatform) system;
