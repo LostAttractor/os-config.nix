@@ -17,6 +17,8 @@ stdenvNoCC.mkDerivation {
 
   nativeBuildInputs = [ glib ];
 
+  patches = [ ./cookie-credentials.patch ];
+
   postPatch = ''
     substituteInPlace adapters/CliSubprocessFetcher.js \
       --replace-fail \
